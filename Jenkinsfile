@@ -16,11 +16,6 @@ pipeline {
         sh 'sh gradlew clean'
       }
     }
-    stage('Jar') {
-      steps {
-        sh 'sh gradlew jar'
-      }
-    }
     stage('Test') {
       steps {
         sh 'sh gradlew test'
@@ -31,21 +26,21 @@ pipeline {
     }
     stage('Build') {
       steps {
-        sh 'sh gradlew bootJar'
+        sh 'sh gradlew assembleDist'
       }
     }
-    stage('Documentation') {
+    /*stage('Documentation') {
       tools {
         jdk 'Java8'
       }
       steps {
         sh 'sh gradlew dokkaJavadoc'
       }
-    }
+    }*/
     stage('Archive') {
       steps {
         archiveArtifacts artifacts: '**/build/libs/*.jar'
-        zip archive: true, dir: 'build/javadoc/', glob: '', zipFile: 'cloud-javadocs.jar'
+        //zip archive: true, dir: 'build/javadoc/', glob: '', zipFile: 'cloud-javadocs.jar'
       }
     }
   }
