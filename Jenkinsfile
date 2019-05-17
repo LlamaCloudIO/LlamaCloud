@@ -18,15 +18,15 @@ pipeline {
     }
     stage('Test') {
       steps {
-        sh 'sh gradlew test'
-        sh 'sh gradlew detekt'
+        sh 'sh gradle test'
+        sh 'sh gradle detekt'
         junit testResults: '**/build/test-results/test/*.xml', allowEmptyResults: true
         checkstyle canRunOnFailed: true, pattern: "**/build/reports/checkstyle/checkstyle.xml, **/build/reports/detekt/detekt.xml"
       }
     }
     stage('Build') {
       steps {
-        sh 'sh gradlew assembleDist'
+        sh 'sh gradle assembleDist'
       }
     }
     /*stage('Documentation') {
@@ -34,7 +34,7 @@ pipeline {
         jdk 'Java8'
       }
       steps {
-        sh 'sh gradlew dokkaJavadoc'
+        sh 'sh gradle dokkaJavadoc'
       }
     }*/
     stage('Archive') {
