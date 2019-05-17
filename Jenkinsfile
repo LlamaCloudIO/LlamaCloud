@@ -13,7 +13,7 @@ pipeline {
   stages {
     stage('Clean') {
       steps {
-        sh 'sh gradlew clean'
+        sh 'sh gradle clean'
       }
     }
     stage('Test') {
