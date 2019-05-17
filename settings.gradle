@@ -1,0 +1,3 @@
+rootProject.name = 'llamacloud-grasslands'
+include 'llamacloud-core'
+
